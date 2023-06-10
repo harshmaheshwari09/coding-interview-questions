@@ -27,14 +27,14 @@ public class Solution {
         this.snapshotMap.put(++currentVersion, snapshot);
     }
 
-    public void pop() {
+    public void pop() throws Exception {
         Node snapshot = this.stack.pop();
         this.snapshotMap.put(++currentVersion, snapshot);
     }
 
     public List<Integer> print(int snapshotVersion) throws Exception {
         if (!this.snapshotMap.containsKey(snapshotVersion)) {
-            throw new Exception(String.format("snapshot version %d is not present", snapshotVersion));
+            throw new Exception(ExceptionMessage.INVALID_SNAPSHOT_VERSION.getMessage());
         }
         Node snapshot = this.snapshotMap.get(snapshotVersion);
         List<Integer> snapshotValues = new ArrayList<>();

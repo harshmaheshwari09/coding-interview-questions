@@ -12,7 +12,10 @@ public class CustomStack {
         return node;
     }
 
-    public Node pop() {
+    public Node pop() throws Exception {
+        if (head == null) {
+            throw new Exception(ExceptionMessage.Empty_STACK.getMessage());
+        }
         this.head = this.head.next;
         return this.head;
     }

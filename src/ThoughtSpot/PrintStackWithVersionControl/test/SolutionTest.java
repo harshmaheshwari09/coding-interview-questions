@@ -1,9 +1,9 @@
 package ThoughtSpot.PrintStackWithVersionControl.test;
 
+import ThoughtSpot.PrintStackWithVersionControl.src.ExceptionMessage;
 import ThoughtSpot.PrintStackWithVersionControl.src.Solution;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.Arrays;
 
@@ -62,6 +62,14 @@ public class SolutionTest {
         // print invalid snapshot
         Exception exception = Assertions.assertThrows(Exception.class, () -> stack.print(17));
         Assertions.assertNotNull(exception);
-        Assertions.assertEquals("snapshot version 17 is not present", exception.getMessage());
+        Assertions.assertEquals(ExceptionMessage.INVALID_SNAPSHOT_VERSION.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    public void testPoppingFromEmptyStack() throws Exception {
+        Solution stack = new Solution();
+        Exception exception = Assertions.assertThrows(Exception.class, () -> stack.pop());
+        Assertions.assertNotNull(exception);
+        Assertions.assertEquals(ExceptionMessage.Empty_STACK.getMessage(), exception.getMessage());
     }
 }
